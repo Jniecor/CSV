@@ -5,13 +5,15 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import javafx.scene.control.Label;
 
 public class UtilCSV {
     
-    static String texto;
+    static String textoLinea;
+    static String textoTodo = "";
     
-    public static void leerCSV(){
-    
+    public static void leerCSV(Label labelTexto){
+        
         String nombreFichero = "supercomputer-power-flops.csv";
         // Declarar una variable BufferedReader
         BufferedReader br = null;
@@ -20,12 +22,14 @@ public class UtilCSV {
             //   un objeto FileReader con el nombre del fichero
             br = new BufferedReader(new FileReader(nombreFichero));
             // Leer la primera línea, guardando en un String
-            texto = br.readLine();
+            textoLinea = br.readLine();
             // Repetir mientras no se llegue al final del fichero
-            while(texto != null) {
-                System.out.println(texto);
+            while(textoLinea != null) {
+                System.out.println(textoLinea);
+                textoTodo+= "\n"+textoLinea;
+                labelTexto.setText(textoTodo);
                 // Leer la siguiente línea
-                texto = br.readLine();
+                textoLinea = br.readLine();
             }
         }
         // Captura de excepción por fichero no encontrado
