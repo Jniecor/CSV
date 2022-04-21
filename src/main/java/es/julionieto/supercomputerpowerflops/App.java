@@ -36,10 +36,10 @@ public class App extends Application {
         labelTexto.setFont((new Font("Liberation Serif", 18)));
         root.getChildren().add(labelTexto);
         
-        final Button botonMostrar = new Button("Mostrar todo");
-        root.getChildren().add(botonMostrar);
-        botonMostrar.setOnAction((t) -> {
-            UtilCSV.leerCSV(labelTexto);
+        final Button botonMostrarDistintos = new Button("Mostrar todo");
+        root.getChildren().add(botonMostrarDistintos);
+        botonMostrarDistintos.setOnAction((t) -> {
+            UtilCSV.leerDistintosCSV(labelTexto);
         });
         
         ArrayList<String> yearList = new ArrayList();
