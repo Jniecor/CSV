@@ -2,13 +2,16 @@ package es.julionieto.supercomputerpowerflops;
 
 public class SupercomputerPowerFlop {
     
-    private String entity;
+    private String entity=" ";
     private String code;
     private int year;
-    private int floatingPointOperationsPerSecond;   
-    
-    public SupercomputerPowerFlop(){
-    
+    private long floatingPointOperationsPerSecond;   
+
+    public SupercomputerPowerFlop(String entity, String code, int year, long floatingPointOperationsPerSecond) {
+        this.entity = entity;
+        this.code = code;
+        this.year = year;
+        this.floatingPointOperationsPerSecond = floatingPointOperationsPerSecond;
     }
     
     public String getEntity(){
@@ -47,13 +50,13 @@ public class SupercomputerPowerFlop {
     
     }
     
-    public int getFloatingPointOperationsPerSecond(){
+    public long getFloatingPointOperationsPerSecond(){
     
         return floatingPointOperationsPerSecond;
     
     }
     
-    public void setFloatingPointOperationsPerSecond(int floatingPointOperationsPerSecond){
+    public void setFloatingPointOperationsPerSecond(long floatingPointOperationsPerSecond){
     
         this.floatingPointOperationsPerSecond = floatingPointOperationsPerSecond;
     

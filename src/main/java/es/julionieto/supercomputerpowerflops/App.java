@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -15,6 +16,9 @@ import javafx.stage.Stage;
 public class App extends Application {
     
     static Label labelTexto = new Label();
+    SupercomputerPowerFlop supercomputerPowerFlop;
+//    SupercomputerPowerFlops supercomputerPowerFlops;
+    
     
     @Override
     public void start(Stage stage) {
@@ -27,7 +31,7 @@ public class App extends Application {
         stage.setTitle("Procesamiento CSV");
         stage.show();        
         
-        SupercomputerPowerFlops supercomputerPowerFlops = new SupercomputerPowerFlops();
+//        SupercomputerPowerFlop supercomputerPowerFlop = new SupercomputerPowerFlop(entity, code, year, floatingPointOperationsPerSecond);
         
         Label labelTitulo = new Label("Operaciones de coma flotante por segundo (1993-2021)");
         labelTitulo.setFont((new Font("Liberation Serif", 22)));
@@ -36,10 +40,20 @@ public class App extends Application {
         labelTexto.setFont((new Font("Liberation Serif", 18)));
         root.getChildren().add(labelTexto);
         
-        final Button botonMostrarDistintos = new Button("Mostrar todo");
-        root.getChildren().add(botonMostrarDistintos);
-        botonMostrarDistintos.setOnAction((t) -> {
-            UtilCSV.leerDistintosCSV(labelTexto);
+        final Button botonMostrarTodo = new Button("Mostrar todo");
+        root.getChildren().add(botonMostrarTodo);
+        botonMostrarTodo.setOnAction((t) -> {
+            UtilCSV.leerTodoCSV(labelTexto);
+        });
+        
+        CheckBox cbMostrarDistintos = new CheckBox("Mostrar distintos");
+        root.getChildren().add(cbMostrarDistintos);
+        cbMostrarDistintos.setOnAction((t) -> {
+            if(cbMostrarDistintos.isSelected()) {
+                UtilCSV.leerDistintosCSV(labelTexto);
+            } else {
+                UtilCSV.leerTodoCSV(labelTexto);     
+            }
         });
         
         ArrayList<String> yearList = new ArrayList();

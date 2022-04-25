@@ -10,10 +10,11 @@ import javafx.scene.control.Label;
 public class UtilCSV {
     
     static String textoLinea;
-    static String textoTodo = "";
+    static String textoTodo;
     
-    public static void leerTodoCSV(Label labelTexto){
-        
+    public static void leerTodoCSV(Label labelTexto, SupercomputerPowerFlops listaSupercomputerPowerFlop){
+        textoLinea="";
+        textoTodo="";
         String nombreFichero = "supercomputer-power-flops.csv";
         // Declarar una variable BufferedReader
         BufferedReader br = null;
@@ -23,14 +24,19 @@ public class UtilCSV {
             br = new BufferedReader(new FileReader(nombreFichero));
             // Leer la primera línea, guardando en un String
             textoLinea = br.readLine();
+            textoLinea = br.readLine();
             // Repetir mientras no se llegue al final del fichero
             while(textoLinea != null) {
                 String valores[] = textoLinea.split(",");
-                String entity = valores[0];
-                String year = valores[1];
-                String edad = valores[2];
-                String operationsPerSecond = valores[3];
+                SupercomputerPowerFlop supercomputerPowerFlop = new SupercomputerPowerFlop(valores[0],valores[1],Integer.valueOf(valores[2]),Long.valueOf(valores[3]));
+                supercomputerPowerFlop.setEntity(valores[0]);
+                supercomputerPowerFlop.setCode(valores[1]);
+                supercomputerPowerFlop.setYear(Integer.valueOf(valores[2]));
+                supercomputerPowerFlop.setFloatingPointOperationsPerSecond(Long.valueOf(valores[3]));
+                //Crear lista;
                 System.out.println(textoLinea);
+                textoTodo+= "\n"+textoLinea;
+                labelTexto.setText(textoTodo);
                 textoLinea = br.readLine();
             }
         }
@@ -61,7 +67,8 @@ public class UtilCSV {
     }
     
     public static void leerDistintosCSV(Label labelTexto){
-        
+        textoLinea="";
+        textoTodo="";
         String nombreFichero = "supercomputer-power-flops.csv";
         int contador = 0;
         // Declarar una variable BufferedReader
@@ -71,6 +78,7 @@ public class UtilCSV {
             //   un objeto FileReader con el nombre del fichero
             br = new BufferedReader(new FileReader(nombreFichero));
             // Leer la primera línea, guardando en un String
+            textoLinea = br.readLine();
             textoLinea = br.readLine();
             String operationsPerSecondOld = "";
             // Repetir mientras no se llegue al final del fichero
