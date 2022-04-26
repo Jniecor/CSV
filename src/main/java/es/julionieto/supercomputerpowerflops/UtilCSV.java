@@ -5,14 +5,16 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 
 public class UtilCSV {
     
     static String textoLinea;
     static String textoTodo;
     
-    public static void leerTodoCSV(Label labelTexto, SupercomputerPowerFlops listaSupercomputerPowerFlop){
+    public static void leerTodoCSV(Label labelTexto){
         textoLinea="";
         textoTodo="";
         String nombreFichero = "supercomputer-power-flops.csv";
@@ -33,6 +35,8 @@ public class UtilCSV {
                 supercomputerPowerFlop.setCode(valores[1]);
                 supercomputerPowerFlop.setYear(Integer.valueOf(valores[2]));
                 supercomputerPowerFlop.setFloatingPointOperationsPerSecond(Long.valueOf(valores[3]));
+                SupercomputerPowerFlops supercomputerPowerFlops = new SupercomputerPowerFlops();
+                supercomputerPowerFlops.getSupercomputerPowerFlops().add(supercomputerPowerFlop);
                 //Crear lista;
                 System.out.println(textoLinea);
                 textoTodo+= "\n"+textoLinea;
@@ -84,10 +88,13 @@ public class UtilCSV {
             // Repetir mientras no se llegue al final del fichero
             while(textoLinea != null) {
                 String valores[] = textoLinea.split(",");
-                String entity = valores[0];
-                String year = valores[1];
-                String edad = valores[2];
-                String operationsPerSecond = valores[3];
+                SupercomputerPowerFlop supercomputerPowerFlop = new SupercomputerPowerFlop(valores[0],valores[1],Integer.valueOf(valores[2]),Long.valueOf(valores[3]));
+                supercomputerPowerFlop.setEntity(valores[0]);
+                supercomputerPowerFlop.setCode(valores[1]);
+                supercomputerPowerFlop.setYear(Integer.valueOf(valores[2]));
+                supercomputerPowerFlop.setFloatingPointOperationsPerSecond(Long.valueOf(valores[3]));
+                SupercomputerPowerFlops supercomputerPowerFlops = new SupercomputerPowerFlops();
+                supercomputerPowerFlops.getSupercomputerPowerFlops().add(supercomputerPowerFlop);
                 if(1 >= contador){
                     System.out.println(textoLinea);
                     textoTodo+= "\n"+textoLinea;
@@ -97,11 +104,11 @@ public class UtilCSV {
                 }
                 if(1 < contador){
                     //Entra en el igual pero no en el distinto
-                    if (operationsPerSecond.equals(operationsPerSecondOld)){
+                    if (String.valueOf(supercomputerPowerFlop.getFloatingPointOperationsPerSecond()).equals(operationsPerSecondOld)/*operationsPerSecond.equals(operationsPerSecondOld)*/){
                         // Leer la siguiente línea
                         textoLinea = br.readLine();
                     }
-                    if (!operationsPerSecond.equals(operationsPerSecondOld)){
+                    if (!String.valueOf(supercomputerPowerFlop.getFloatingPointOperationsPerSecond()).equals(operationsPerSecondOld)){
                         System.out.println(textoLinea);
                         textoTodo+= "\n"+textoLinea;
                         labelTexto.setText(textoTodo);
@@ -109,7 +116,7 @@ public class UtilCSV {
                         textoLinea = br.readLine();
                     }
                 }
-                operationsPerSecondOld = operationsPerSecond;
+                operationsPerSecondOld = String.valueOf(supercomputerPowerFlop.getFloatingPointOperationsPerSecond());
                 contador++;
             }
         }
@@ -137,6 +144,11 @@ public class UtilCSV {
             }
         }
     
+    }
+    
+    public static void comboBoxCSV(Label labelTexto){
+        
+        
     }
     
     public static void escribirCSV(){

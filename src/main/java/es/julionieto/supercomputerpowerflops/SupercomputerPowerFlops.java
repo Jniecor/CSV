@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class SupercomputerPowerFlops {
     
-    private ArrayList<SupercomputerPowerFlop> listaSupercomputerPowerFlop = new <SupercomputerPowerFlop>ArrayList();
+    private ArrayList<SupercomputerPowerFlop> listaSupercomputerPowerFlops = new <SupercomputerPowerFlops>ArrayList();
     
-    public ArrayList<SupercomputerPowerFlop> getSupercomputerPowerFlop(){
+    public ArrayList<SupercomputerPowerFlop> getSupercomputerPowerFlops(){
     
-        return listaSupercomputerPowerFlop;
+        return listaSupercomputerPowerFlops;
     
     }
 
-    public void setSupercomputerPowerFlop(ArrayList<SupercomputerPowerFlop> listaSupercomputerPowerFlop){
+    public void setSupercomputerPowerFlops(ArrayList<SupercomputerPowerFlop> listaSupercomputerPowerFlops){
     
-        this.listaSupercomputerPowerFlop = listaSupercomputerPowerFlop;
+        this.listaSupercomputerPowerFlops = listaSupercomputerPowerFlops;
     
     }
 
