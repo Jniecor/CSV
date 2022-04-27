@@ -2,7 +2,7 @@ package es.julionieto.supercomputerpowerflops;
 
 public class SupercomputerPowerFlop {
     
-    private String entity=" ";
+    private String entity;
     private String code;
     private int year;
     private long floatingPointOperationsPerSecond;   

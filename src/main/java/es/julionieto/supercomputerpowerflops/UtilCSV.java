@@ -5,18 +5,17 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
 public class UtilCSV {
     
     static String textoLinea;
-    static String textoTodo;
+    static SupercomputerPowerFlops supercomputerPowerFlops = new SupercomputerPowerFlops();
     
-    public static void leerTodoCSV(Label labelTexto){
-        textoLinea="";
-        textoTodo="";
+    public static void leerTodoCSV(TableView tableView){
         String nombreFichero = "supercomputer-power-flops.csv";
         // Declarar una variable BufferedReader
         BufferedReader br = null;
@@ -35,14 +34,13 @@ public class UtilCSV {
                 supercomputerPowerFlop.setCode(valores[1]);
                 supercomputerPowerFlop.setYear(Integer.valueOf(valores[2]));
                 supercomputerPowerFlop.setFloatingPointOperationsPerSecond(Long.valueOf(valores[3]));
-                SupercomputerPowerFlops supercomputerPowerFlops = new SupercomputerPowerFlops();
                 supercomputerPowerFlops.getSupercomputerPowerFlops().add(supercomputerPowerFlop);
                 //Crear lista;
                 System.out.println(textoLinea);
-                textoTodo+= "\n"+textoLinea;
-                labelTexto.setText(textoTodo);
                 textoLinea = br.readLine();
             }
+            ObservableList<SupercomputerPowerFlop> data = FXCollections.observableArrayList(supercomputerPowerFlops.getSupercomputerPowerFlops());
+            tableView.setItems(data);
         }
         // Captura de excepción por fichero no encontrado
         catch (FileNotFoundException ex) {
@@ -70,9 +68,8 @@ public class UtilCSV {
     
     }
     
-    public static void leerDistintosCSV(Label labelTexto){
+    public static void leerDistintosCSV(TableView tableView){
         textoLinea="";
-        textoTodo="";
         String nombreFichero = "supercomputer-power-flops.csv";
         int contador = 0;
         // Declarar una variable BufferedReader
