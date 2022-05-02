@@ -94,8 +94,8 @@ public class UtilCSV {
                 supercomputerPowerFlops.getSupercomputerPowerFlops().add(supercomputerPowerFlop);
                 if(1 >= contador){
                     System.out.println(textoLinea);
-                    textoTodo+= "\n"+textoLinea;
-                    labelTexto.setText(textoTodo);
+                    ObservableList<SupercomputerPowerFlop> data = FXCollections.observableArrayList(supercomputerPowerFlops.getSupercomputerPowerFlops());
+                    tableView.setItems(data);
                     // Leer la siguiente línea
                     textoLinea = br.readLine();
                 }
@@ -107,8 +107,8 @@ public class UtilCSV {
                     }
                     if (!String.valueOf(supercomputerPowerFlop.getFloatingPointOperationsPerSecond()).equals(operationsPerSecondOld)){
                         System.out.println(textoLinea);
-                        textoTodo+= "\n"+textoLinea;
-                        labelTexto.setText(textoTodo);
+                        ObservableList<SupercomputerPowerFlop> data = FXCollections.observableArrayList(supercomputerPowerFlops.getSupercomputerPowerFlops());
+                        tableView.setItems(data);
                         // Leer la siguiente línea
                         textoLinea = br.readLine();
                     }
@@ -141,11 +141,6 @@ public class UtilCSV {
             }
         }
     
-    }
-    
-    public static void comboBoxCSV(Label labelTexto){
-        
-        
     }
     
     public static void escribirCSV(){

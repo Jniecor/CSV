@@ -74,21 +74,21 @@ public class App extends Application {
         });
         
         // Crear un ComboBox con el contenido de la lista
-        ComboBox<String> comboBox = new ComboBox(FXCollections.observableList(yearList));
-        int yearInt = 1992;
-        for (int i = yearInt; i<2022; i++){
-            if (yearInt == 1992){
-                yearList.add("Todos");
-                yearInt++;
-            }
-            yearList.add(String.valueOf(i));
-        }
-        root.getChildren().add(comboBox);
+//        ComboBox<String> comboBox = new ComboBox(FXCollections.observableList(yearList));
+//        int yearInt = 1992;
+//        for (int i = yearInt; i<2022; i++){
+//            if (yearInt == 1992){
+//                yearList.add("Todos");
+//                yearInt++;
+//            }
+//            yearList.add(String.valueOf(i));
+//        }
+//        root.getChildren().add(comboBox);
         // Cuando el usuario seleccione algo del ComboBox, se mostrará en el Label
-        comboBox.setOnAction((t) -> {
-//            UtilCSV.comboBoxCSV(labelTexto);
-            labelTexto.setText(comboBox.getValue());
-        });
+//        comboBox.setOnAction((t) -> {
+////            UtilCSV.comboBoxCSV(labelTexto);
+//            labelTexto.setText(comboBox.getValue());
+//        });
         
     }
 
